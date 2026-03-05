@@ -17,12 +17,26 @@ import spacy
 import neattext as nt
 import neattext.functions as nfx
 import requests
+import spacy
+from spacy.cli import download
+import neattext as nt
+import neattext.functions as nfx
+import requests
 
-# Configure matplotlib to use the 'Agg' backend
+# Configure matplotlib backend
 matplotlib_use("Agg")
 
-# Load the spaCy model
-nlp = spacy.load('en_core_web_sm')
+# Load spaCy model safely (for Streamlit Cloud)
+@st.cache_resource
+def load_spacy_model():
+    try:
+        return spacy.load("en_core_web_sm")
+    except:
+        download("en_core_web_sm")
+        return spacy.load("en_core_web_sm")
+
+nlp = load_spacy_model()
+
 
 # Time Format for filename
 timestr = time.strftime("%Y%m%d-%H%M%S")
