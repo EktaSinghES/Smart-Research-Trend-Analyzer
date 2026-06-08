@@ -72,6 +72,3 @@ streamlit run app.py
 4. **Reuse**: All core NLP from original app (spaCy, TextBlob, WordCloud)
 5. **CHRIST relevance**: Domain mapping for academic planning
 
-## License
-
-MIT License
